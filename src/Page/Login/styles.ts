@@ -26,10 +26,6 @@ export const Box = styled.div`
   > div {
     width: 100%;
   }
-
-  /* > button:last-child {
-  
-  } */
 `;
 
 export const Input = styled.input`

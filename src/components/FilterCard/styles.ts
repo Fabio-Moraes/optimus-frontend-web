@@ -1,4 +1,24 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import moment from 'moment';
+
+interface dayProps {
+  day: string;
+}
+
+const activeTodayCSS = css`
+    background: #39e75f;
+    &:hover {
+    background: #1fd655;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  }
+`;
+
+const disabledTodayCSS = css`
+  &:hover {
+    background: rgba(162, 153, 149, 0.3);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  }
+`;
 
 export const ItemContainer = styled.div`
   display: flex;
@@ -12,6 +32,10 @@ export const ItemContainer = styled.div`
   margin: 10px;
   padding: 10px;
   align-items: center;
+
+  ${({ day }: dayProps) => {
+    return String(day) === String(moment.utc().format('DD/MM/YY')) ? activeTodayCSS : disabledTodayCSS;
+  }};
 
   > div {
     /* padding: 0px 0px 0px 100px; */
@@ -33,13 +57,6 @@ export const ItemContainer = styled.div`
       border-radius: 30px;
       margin-left: -4px;
     }
-
-    /* > strong {
-      margin-bottom: 5px;
-      display: block;
-      text-align: center;
-      font-size: 14px;
-    } */
   }
 `;
 

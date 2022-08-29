@@ -1,8 +1,7 @@
 import { useContexState } from '../../hooks/context';
 import { FilterCard } from '../../components/FilterCard';
-import { useState } from 'react';
 import moment from 'moment';
-[].length
+
 import {
   ListContainer,
   Input,
@@ -24,13 +23,6 @@ export function Filter() {
   const setDuplicated = new Set();
   const { loadingList, search, setSearch } = useContexState();
 
-  function convertList(item: ListProps) {
-    const phoneList = item.phone.split('@')[0].substring(2)
-    const timeList = item.service_time.substring(0, item.service_time.length - 3);
-    const dateListNow = moment.utc(item.service_date).format('DD/MM/YY');
-    return { timeList, dateListNow, phoneList }
-  }
-
   const filterDuplicatedIdentifier = loadingList?.filter((res) => {
     const duplicatedDate = setDuplicated.has(res.identifier);
     setDuplicated.add(res.identifier);
@@ -41,17 +33,20 @@ export function Filter() {
     ? filterDuplicatedIdentifier.filter(item => {
       return `
       ${item.name.replace(/_/g, ' ')}
-      ${convertList(item).phoneList}
+      ${item.phone.split('@')[0].substring(2)}
       ${item.service.replace(/_/g, ' ')}
       ${item.employee.replace(/_/g, ' ')}
-      ${convertList(item).timeList}${convertList(item).dateListNow}
+      ${item.service_time.substring(0, item.service_time.length - 3)}
+      ${moment.utc(item.service_date).format('DD/MM/YY')}
       ${item.identifier}`.toLowerCase().includes(search.toLowerCase());
     })
     : filterDuplicatedIdentifier;
 
   const OrderByDate = filterText.sort(function (a, b) {
-    const primary = moment.utc(a.service_date).valueOf();
-    const secondary = moment.utc(b.service_date).valueOf();
+    const primary = moment.utc(a.service_date, "YYYY/MM/DD")
+      .valueOf() + moment.utc(a.service_time, "HH:mm").valueOf();
+    const secondary = moment.utc(b.service_date, "YYYY/MM/DD")
+      .valueOf() + moment.utc(b.service_time, "HH:mm").valueOf();
     return primary - secondary
   });
 
@@ -77,9 +72,9 @@ export function Filter() {
               name={item.name.replace(/_/g, ' ')}
               service={item.service.replace(/_/g, ' ')}
               employee={item.employee.replace(/_/g, ' ')}
-              service_date={convertList(item).dateListNow}
-              service_time={convertList(item).timeList}
-              phone={convertList(item).phoneList}
+              service_date={moment.utc(item.service_date).format('DD/MM/YY')}
+              service_time={item.service_time.substring(0, item.service_time.length - 3)}
+              phone={item.phone.split('@')[0].substring(2)}
               identifier={item.identifier}
             />
           })

@@ -13,7 +13,7 @@ interface propsType {
   quantity: string
 }
 
-export function DateCard(props: propsType) {
+export function HomeCard(props: propsType) {
   const { setSearch } = useContexState();
   const navigate = useNavigate();
 

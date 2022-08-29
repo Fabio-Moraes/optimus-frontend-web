@@ -12,7 +12,7 @@ interface PropsCard {
 
 export function FilterCard(props: PropsCard) {
   return (
-    <ItemContainer>
+    <ItemContainer day={props.service_date}>
       {/* <Thumbnail src={props.image} /> */}
       <div>
         <strong>Nome: {props.name}</strong>

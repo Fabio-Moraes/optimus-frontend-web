@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 import moment from 'moment';
 
-import { Twitter, Facebook } from '../../styles/Icons';
+interface dayProps {
+  day: string;
+}
 
 const activeTodayCSS = css`
     background: #39e75f;
@@ -17,12 +19,6 @@ const disabledTodayCSS = css`
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   }
 `;
-
-const date = new Date();
-
-interface dayProps {
-  day: string;
-}
 
 export const Container = styled.button`
   display: flex;
@@ -52,11 +48,11 @@ export const Description = styled.div`
   /* margin-top: 2px; */
   padding: 10px;
   border-radius: 8px;
-  background: #FFF;
+  background-color: #FFF;
   border: 2.7px solid var(--outline);
 
   ${({ day }: dayProps) => {
-    return day === moment.utc(date).format('DD/MM/YY') ? activeTodayCSS : disabledTodayCSS;
+    return String(day) === String(moment.utc().format('DD/MM/YY')) ? activeTodayCSS : disabledTodayCSS;
   }};
   > p {text-align: start}
 `;

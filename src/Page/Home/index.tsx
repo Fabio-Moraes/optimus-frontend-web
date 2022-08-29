@@ -6,7 +6,7 @@ import {
 } from './styles';
 
 import { useContexState } from '../../hooks/context';
-import { DateCard } from '../../components/DateCard';
+import { HomeCard } from '../../components/HomeCard';
 import moment from 'moment';
 
 export function Home() {
@@ -46,7 +46,7 @@ export function Home() {
         <List>
           {OrderByDate.length > 0 && (
             OrderByDate.map((item, index) => {
-              return <DateCard
+              return <HomeCard
                 key={index}
                 date={moment.utc(item.service_date).format('DD/MM/YY')}
                 quantity={registrationsQuantity(item.service_date)}
