@@ -77,11 +77,12 @@ export const LogoImage = styled.img.attrs({
 })`
   width: 60px;
   height: auto;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-left: -5%;  
 
   border-radius: 6%;
-  margin-left: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
   fill: var(--twitter);
 `;
 
