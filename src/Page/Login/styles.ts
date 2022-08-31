@@ -34,6 +34,17 @@ export const Box = styled.div`
 	> div {
 		width: 100%;
 	}
+
+	> div:last-child {
+		margin-top: 10px;
+	> p {
+		font-size: 13px;
+		margin-left: 10px;
+	}
+
+	  display: flex;
+	  justify-content: row;
+	} 
 `;
 
 export const Input = styled.input`

@@ -14,7 +14,8 @@ export function Login() {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
-  const [textError, setTextError] = useState('')
+  const [textError, setTextError] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
 
   const ButtonClick = () => {
     if (validLogins[user as keyof typeof validLogins] === password) {
@@ -49,19 +50,22 @@ export function Login() {
             onKeyDown={(e: { key: string }) => {
               e.key === 'Enter' && ButtonClick()
             }}
-            
+
             textError={textError}
-            type="text"
-            value={password}
-            onChange={e => {
-              setTextError('');
-              setPassword(e.target.value)
-            }}
-            placeholder="Senha"
+            type={isChecked ? "text" : "password" }
+          value={password}
+          onChange={e => {
+            setTextError('');
+            setPassword(e.target.value)
+          }}
+          placeholder="Senha"
           />
-            <PasswordIcon />
+          <PasswordIcon />
 
         </div>
+
+
+
         <p>{textError === 'error' ? 'Login ou Senha Inválido' : ''}</p>
         <Button
           onClick={() => {
@@ -71,6 +75,13 @@ export function Login() {
         >
           <span>Conectar</span>
         </Button>
+        <div>
+          <input type="checkbox" defaultChecked={isChecked} onChange={e => {
+            setIsChecked(isChecked ? false : true)
+            console.log(isChecked)
+          }} />
+          <p>Mostrar senha</p>
+        </div>
       </Box>
 
     </Container>
