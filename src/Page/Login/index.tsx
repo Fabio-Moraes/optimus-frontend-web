@@ -35,7 +35,7 @@ export function Login() {
             }}
 
             textError={textError}
-            type="search"
+            type="text"
             value={user}
             onChange={e => {
               setTextError('');
@@ -51,7 +51,7 @@ export function Login() {
             }}
             
             textError={textError}
-            type="search"
+            type="text"
             value={password}
             onChange={e => {
               setTextError('');
