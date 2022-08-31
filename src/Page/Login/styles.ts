@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Search } from '../../styles/Icons';
+import { LockPassword, User } from '../../styles/Icons';
 
 export const Container = styled.div`
 	display: flex;
@@ -40,7 +40,7 @@ export const Input = styled.input`
 	width: 100%;
 	height: 39px;
 	font-size: 14px;
-	padding: 0 0px 0 52px;
+	padding: 0px 0px 0px 52px;
 	border-radius: 7.5px;
 	background: var(--secondary);
 
@@ -78,12 +78,21 @@ export const Input = styled.input`
 	}
 `;
 
-export const SearchIcon = styled(Search)`
-	width: 27px;
-	height: 27px;
+export const UserIcon = styled(User)`
+	width: 23px;
+	height: 23px;
+	margin-top: 2px;
 	position: absolute;
 	fill: var(--gray);
-`;
+	`;
+
+export const PasswordIcon = styled(LockPassword)`
+	width: 23px;
+	height: 23px;
+	margin-top: 2px;
+	position: absolute;
+	fill: var(--gray);
+	`;
 
 export const Button = styled.button`
 		display: flex;

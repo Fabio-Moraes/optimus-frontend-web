@@ -1,4 +1,4 @@
-import { Container, Box, Input, SearchIcon, Button } from './styles';
+import { Container, Box, Input, PasswordIcon, UserIcon, Button } from './styles';
 import { useContexState } from '../../hooks/context';
 import { useState } from 'react';
 
@@ -43,8 +43,7 @@ export function Login() {
             }}
             placeholder="Usuario"
           />
-          <SearchIcon />
-
+          <UserIcon />
 
           <Input
             onKeyDown={(e: { key: string }) => {
@@ -60,7 +59,7 @@ export function Login() {
             }}
             placeholder="Senha"
           />
-          <SearchIcon />
+            <PasswordIcon />
 
         </div>
         <p>{textError === 'error' ? 'Login ou Senha Inválido' : ''}</p>
