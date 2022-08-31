@@ -14,11 +14,14 @@ export function Login() {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
+  const [textError, setTextError] = useState('')
+
   const ButtonClick = () => {
     if (validLogins[user as keyof typeof validLogins] === password) {
       setLoginAccount({ user, password });
     } else {
       console.log('no123');
+      setTextError('error');
     }
   }
 
@@ -27,24 +30,40 @@ export function Login() {
       <Box>
         <div>
           <Input
+            onKeyDown={(e: { key: string }) => {
+              e.key === 'Enter' && ButtonClick()
+            }}
+
+            textError={textError}
             type="search"
             value={user}
-            onChange={e => setUser(e.target.value)}
+            onChange={e => {
+              setTextError('');
+              setUser(e.target.value)
+            }}
             placeholder="Usuario"
           />
           <SearchIcon />
-        </div>
 
-        <div>
+
           <Input
+            onKeyDown={(e: { key: string }) => {
+              e.key === 'Enter' && ButtonClick()
+            }}
+            
+            textError={textError}
             type="search"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={e => {
+              setTextError('');
+              setPassword(e.target.value)
+            }}
             placeholder="Senha"
           />
           <SearchIcon />
-        </div>
 
+        </div>
+        <p>{textError === 'error' ? 'Login ou Senha Inválido' : ''}</p>
         <Button
           onClick={() => {
             window.scrollTo(0, 0);
@@ -54,6 +73,7 @@ export function Login() {
           <span>Conectar</span>
         </Button>
       </Box>
+
     </Container>
   );
 }

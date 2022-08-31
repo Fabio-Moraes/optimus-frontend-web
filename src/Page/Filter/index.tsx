@@ -7,6 +7,7 @@ import {
   Input,
   SearchWrapper,
   SearchIcon,
+  ClearIcon
 } from './styles';
 
 interface ListProps {
@@ -53,6 +54,7 @@ export function Filter() {
   return (
     <>
       <SearchWrapper>
+        <ClearIcon />
         <div>
           <Input
             type="search"

@@ -55,6 +55,15 @@ export const SearchIcon = styled(Search)`
   fill: var(--gray);
 `;
 
+export const ClearIcon = styled(Search)`
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  margin-left: 230px;
+  top:15px;
+  fill: var(--gray);
+`;
+
 export const SearchWrapper = styled.div`
   position: sticky;
   top: 65px;
@@ -63,6 +72,8 @@ export const SearchWrapper = styled.div`
   border-bottom: 1px solid var(--outline);
   max-height: 57px;
   padding: 8px 0 9px 13px;
+
+  flex-direction: row;
 
   @media (min-width: 550px) {
     top: 0px;

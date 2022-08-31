@@ -6,7 +6,7 @@ interface dayProps {
 }
 
 const activeTodayCSS = css`
-    background: #39e75f;
+    background: #90EE90;
     &:hover {
     background: #1fd655;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -44,7 +44,6 @@ export const Content = styled.div`
 `;
 
 export const Description = styled.div`
-  font-size: 17px;
   /* margin-top: 2px; */
   padding: 10px;
   border-radius: 8px;
@@ -54,5 +53,8 @@ export const Description = styled.div`
   ${({ day }: dayProps) => {
     return String(day) === String(moment.utc().format('DD/MM/YY')) ? activeTodayCSS : disabledTodayCSS;
   }};
-  > p {text-align: start}
+  > p {
+    font-size: 17px;
+    text-align: start
+    }
 `;

@@ -24,7 +24,7 @@ export function Layout() {
     });
   }, [])
 
-  return loginAccount.password.length > 1 ? (
+  return loginAccount.password.length > 1 /* true */ ? (
     <Router>
       <Container>
         <Wrapper>

@@ -7,6 +7,8 @@ export const Container = styled.div`
   background-color: #ccc;
   overflow: auto;  
 
+  align-items: center;
+
   max-height: 100%;
   min-height: 500px;
 
@@ -54,20 +56,12 @@ export const CakeIcon = styled(Cake)`
 
 
 export const List = styled.div`
+  justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   padding: 10px;
-  justify-content: center;
 
-  > h1 {
-    font-size: 20px;
-    padding-bottom: 100%;
-  }
-
-  > DateCard {
-    background-color: #777;
-  }
 `;
 
 export const DateCardToday = styled.div`

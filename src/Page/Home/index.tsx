@@ -42,19 +42,18 @@ export function Home() {
       <Banner>
         <Imagen />
       </Banner>
-      <Container>
-        <List>
-          {OrderByDate.length > 0 && (
-            OrderByDate.map((item, index) => {
-              return <HomeCard
-                key={index}
-                date={moment.utc(item.service_date).format('DD/MM/YY')}
-                quantity={registrationsQuantity(item.service_date)}
-              />
-            })
-          )}
-        </List>
-      </Container>
+      <List>
+        {OrderByDate.length > 0 && (
+          OrderByDate.map((item, index) => {
+            return <HomeCard
+              key={index}
+              date={moment.utc(item.service_date).format('DD/MM/YY')}
+              quantity={registrationsQuantity(item.service_date)}
+            />
+          })
+        )}
+        {/* <div /> */}
+      </List>
     </Container>
   );
 }

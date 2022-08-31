@@ -6,7 +6,7 @@ interface dayProps {
 }
 
 const activeTodayCSS = css`
-    background: #39e75f;
+    background: #90EE90;
     &:hover {
     background: #1fd655;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -37,27 +37,13 @@ export const ItemContainer = styled.div`
     return String(day) === String(moment.utc().format('DD/MM/YY')) ? activeTodayCSS : disabledTodayCSS;
   }};
 
-  > div {
-    /* padding: 0px 0px 0px 100px; */
-
-    > strong {
-      color: #000;
-      margin-bottom: 5px;
-      display: block;
-      text-align: start;
-      font-size: 15px;
-    }
-
-    > span {
-      display: block;
-      text-align: center;
-      font-size: 13px;
-      background: #000;
-      padding: 2px 5px;
-      border-radius: 30px;
-      margin-left: -4px;
-    }
-  }
+  > div > strong {
+  color: #000;
+  margin-bottom: 5px;
+  display: block;
+  text-align: start;
+  font-size: 16px;
+ }
 `;
 
 export const Thumbnail = styled.img`
