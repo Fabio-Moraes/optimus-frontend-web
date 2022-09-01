@@ -25,4 +25,5 @@ export { Plant, Gallery, Contacts, FileList, LockPassword } from '@styled-icons/
 export { Menu3 } from '@styled-icons/icomoon';
 export { Facebook, InstagramAlt, Twitter } from '@styled-icons/boxicons-logos';
 export { NotepadPerson } from '@styled-icons/fluentui-system-regular';
-export { ListAlt } from '@styled-icons/material-rounded'
+export { ListAlt, RestartAlt } from '@styled-icons/material-rounded';
+export { TextClearFormatting } from '@styled-icons/fluentui-system-filled';

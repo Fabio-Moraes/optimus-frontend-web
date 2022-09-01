@@ -28,15 +28,16 @@ export const Box = styled.div`
 		font-size: 15px;
 		color: #ff0000;
 		margin-top: -20px; 
-        margin-bottom: 7px;  	
+        margin-bottom: 5px;  	
 	};
 
 	> div {
+		margin-top: 8px;
 		width: 100%;
 	}
 
 	> div:last-child {
-		margin-top: 10px;
+		margin-top: 15px;
 	> p {
 		font-size: 13px;
 		margin-left: 10px;

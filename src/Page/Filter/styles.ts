@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { Search, ListAlt } from '../../styles/Icons';
+import styled, { css, keyframes } from 'styled-components';
+import { Search, ListAlt, TextClearFormatting, RestartAlt } from '../../styles/Icons';
 
 export const ListContainer = styled.div`
   display: flex;
@@ -55,14 +55,24 @@ export const SearchIcon = styled(Search)`
   fill: var(--gray);
 `;
 
-export const ClearIcon = styled(Search)`
-  width: 27px;
-  height: 27px;
-  position: absolute;
-  margin-left: 230px;
-  top:15px;
-  fill: var(--gray);
-`;
+export const ClearIcon = styled(TextClearFormatting)`
+  width: 28px;
+  height: 28px;
+  /* position: absolute; */
+  fill: #FFF;
+  `;
+
+const RotationAnimation = keyframes`  
+    from { transform: rotate(0deg); }
+    to {  transform: rotate(360deg); }
+  `;
+
+export const RestartAltIcon = styled(RestartAlt)`
+  width: 29px;
+  height: 29px;
+  margin-bottom: 3px;
+  fill: #FFF;
+`
 
 export const SearchWrapper = styled.div`
   position: sticky;
@@ -77,6 +87,15 @@ export const SearchWrapper = styled.div`
 
   @media (min-width: 550px) {
     top: 0px;
+  }
+
+  > div:first-child {
+    margin-left: 230px;
+    position: absolute;
+
+    > Button:last-child {
+      /* animation: ${RotationAnimation} reverse linear 500ms infinite; */
+    }
   }
 
   > div {
@@ -94,16 +113,22 @@ const iconCSS = css`
 `;
 
 export const Button = styled.button`
-  display: flex;
-  position: static;
+  /* padding: 8px 10px 1px 10px; */
+  
   flex-direction: column;
   align-items: center;
   justify-content: center;
   user-select: none;
-  outline: 0;
-  background: #fff;
-  border-radius: 5px;
-  padding: 1px 10px 1px 10px;
+  
+  /* background-color: #456; */
+  
+  margin-top: 6px;
+  margin-right: 15px;
+
+  top: 12px;
+  width: 30px;
+  height: 30px;
+
 
   cursor: pointer;
 `;

@@ -1,13 +1,16 @@
 import { useContexState } from '../../hooks/context';
 import { FilterCard } from '../../components/FilterCard';
 import moment from 'moment';
+import api from '../../services/axios';
 
 import {
   ListContainer,
   Input,
   SearchWrapper,
   SearchIcon,
-  ClearIcon
+  ClearIcon,
+  Button,
+  RestartAltIcon
 } from './styles';
 
 interface ListProps {
@@ -22,7 +25,7 @@ interface ListProps {
 
 export function Filter() {
   const setDuplicated = new Set();
-  const { loadingList, search, setSearch } = useContexState();
+  const { loadingList, setLoadingList, search, setSearch } = useContexState();
 
   const filterDuplicatedIdentifier = loadingList?.filter((res) => {
     const duplicatedDate = setDuplicated.has(res.identifier);
@@ -54,7 +57,22 @@ export function Filter() {
   return (
     <>
       <SearchWrapper>
-        <ClearIcon />
+        <div>
+          <Button onClick={() => {
+            setSearch('')
+          }} >
+            <ClearIcon />
+          </Button>
+
+          <Button onClick={() => {
+            api.get('select', {}).then((responce) => {
+              setLoadingList(responce.data);
+            });
+          }}>
+            <RestartAltIcon />
+          </Button>
+        </div>
+
         <div>
           <Input
             type="search"
