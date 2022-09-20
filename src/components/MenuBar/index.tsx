@@ -13,7 +13,7 @@ import { useContexState } from '../../hooks/context'
 
 export function MenuBar() {
   const { setLoginAccount } = useContexState();
-  
+
   const navigate = useNavigate();
   const location = useLocation();
   return (
@@ -57,7 +57,7 @@ export function MenuBar() {
         <Button
           path={'/login'}
           onClick={() => {
-            setLoginAccount({ user: '', password: '' })
+            setLoginAccount({ user: '', password: '', business: '' })
           }}
         >
           <ExitIcon />

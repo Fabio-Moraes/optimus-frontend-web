@@ -5,6 +5,16 @@ import {
   List
 } from './styles';
 
+interface Repository {
+  name: string;
+  service: string;
+  service_date: string;
+  service_time: string;
+  phone: string;
+  identifier: string;
+  employee: string;
+}
+
 import { useContexState } from '../../hooks/context';
 import { HomeCard } from '../../components/HomeCard';
 import moment from 'moment';
@@ -21,7 +31,7 @@ export function Home() {
 
   const registrationsQuantity = (date: string) => {
     const setDuplicatedIdentifier = new Set();
-    const filterSameDate = loadingList.filter((res) => res.service_date === date);
+    const filterSameDate: Repository[] = loadingList.filter((res) => res.service_date === date);
 
     const filterDuplicatedIdentifier = filterSameDate.filter((res) => {
       const duplicatedIdentifier = setDuplicatedIdentifier.has(res.identifier);

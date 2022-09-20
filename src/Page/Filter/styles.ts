@@ -63,9 +63,12 @@ export const ClearIcon = styled(TextClearFormatting)`
   `;
 
 const RotationAnimation = keyframes`  
-    from { transform: rotate(0deg); }
-    to {  transform: rotate(360deg); }
+  0%
+    { transform: rotate(0deg); }
+  100%
+    { transform: rotate(360deg); }
   `;
+
 
 export const RestartAltIcon = styled(RestartAlt)`
   width: 29px;
@@ -93,10 +96,7 @@ export const SearchWrapper = styled.div`
     margin-left: 230px;
     position: absolute;
 
-    > Button:last-child {
-      /* animation: ${RotationAnimation} reverse linear 500ms infinite; */
-    }
-  }
+  };
 
   > div {
     width: min(210px, max(85vw, 100px));

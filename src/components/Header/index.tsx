@@ -19,7 +19,7 @@ export function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { setLoginAccount } = useContexState();
+  const { setLoginAccount, loginAccount } = useContexState();
 
   return (
     <>
@@ -33,7 +33,7 @@ export function Header() {
         </ProfileInfo>
 
         <OnlineInfo>
-          <strong>💈 Barbearia Irmão James 💈</strong>
+          <strong>💈 {loginAccount.business} 💈</strong>
           {/* <span>online</span> */}
         </OnlineInfo>
       </Forehead>
@@ -75,7 +75,7 @@ export function Header() {
         <Button
           path={'/login'}
           onClick={() => {
-            setLoginAccount({ user: '', password: '' })
+            setLoginAccount({ user: '', password: '', business: '' })
           }}
         >
           <ExitIcon />

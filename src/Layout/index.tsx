@@ -11,20 +11,41 @@ import { Footer } from '../components/Footer';
 import { Container, Wrapper, Main } from './styles';
 import { useContexState } from '../hooks/context';
 
-import { Login } from '../Page/Login'
 import api from '../services/axios';
 
+import { Login } from '../Page/Login'
+
+interface Repository {
+  name: string;
+  service: string;
+  service_date: string;
+  service_time: string;
+  phone: string;
+  identifier: string;
+  employee: string;
+}
+
 export function Layout() {
-  const { setLoadingList, loginAccount, setLoginAccount } = useContexState();
+  const { setLoadingList, loginAccount } = useContexState();
 
   useEffect(() => {
-    setLoginAccount({ user: '', password: '' })
-    api.get('select', {}).then((responce) => {
-      setLoadingList(responce.data);
-    });
-  }, [])
+    if (loginAccount.business !== '') {
+      api.get('select', {
+        params: {
+          user: loginAccount.user,
+          password: loginAccount.password
+        }
+      })
+        .then(({ data: repositories }: { data: Repository[] }) => {
+          if (loginAccount.business !== '') setLoadingList(repositories);
+        })
+        .catch((err: Error) => {
+          console.log(err);
+        })
+    }
+  }, [loginAccount])
 
-  return loginAccount.password.length > 1 /* true */ ? (
+  return loginAccount.business !== '' ? (
     <Router>
       <Container>
         <Wrapper>

@@ -1,6 +1,13 @@
+import { useState } from 'react'
 import { useContexState } from '../../hooks/context';
 import { FilterCard } from '../../components/FilterCard';
 import moment from 'moment';
+
+import { motion } from "framer-motion";
+
+import { Player } from '@lottiefiles/react-lottie-player';
+import animationData from '../../assets/lottie/refresh.json'
+
 import api from '../../services/axios';
 
 import {
@@ -13,7 +20,7 @@ import {
   RestartAltIcon
 } from './styles';
 
-interface ListProps {
+interface Repository {
   name: string;
   service: string;
   service_date: string;
@@ -24,8 +31,15 @@ interface ListProps {
 }
 
 export function Filter() {
+  const [isRotate, setIsRotate] = useState(false)
+
+  const variants = {
+    animated1: {  rotate: [360, 0]},
+    animated2: {  rotate: [360, 0] },
+  }
+
   const setDuplicated = new Set();
-  const { loadingList, setLoadingList, search, setSearch } = useContexState();
+  const { loadingList, loginAccount, setLoadingList, search, setSearch } = useContexState();
 
   const filterDuplicatedIdentifier = loadingList?.filter((res) => {
     const duplicatedDate = setDuplicated.has(res.identifier);
@@ -54,6 +68,15 @@ export function Filter() {
     return primary - secondary
   });
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+
   return (
     <>
       <SearchWrapper>
@@ -65,11 +88,31 @@ export function Filter() {
           </Button>
 
           <Button onClick={() => {
-            api.get('select', {}).then((responce) => {
-              setLoadingList(responce.data);
-            });
+            api.get('select', { params: { user: loginAccount.user, password: loginAccount.password } })
+              .then(({ data: repositories }: { data: Repository[] }) => {
+                if (loginAccount.business !== '') setLoadingList(repositories);
+                console.log('teste asdasd')
+              })
+              .catch((err: Error) => {
+                console.log(err);
+              })
           }}>
-            <RestartAltIcon />
+            {/* <Player
+              src={animationData}
+              className="player"
+              style={{ height: '50px', width: '50px' }}
+              loop
+              autoplay
+              speed={1}
+            /> */}
+
+            <motion.div
+              animate={isRotate ? "animated1" : "animated2"}
+              variants={variants}
+              transition={{ repeat: 3, type: 'tween', duration: 0.2 }}
+              onClick={() => setIsRotate(isRotate => !isRotate)} >
+              <RestartAltIcon />
+            </motion.div>
           </Button>
         </div>
 
